@@ -6,7 +6,7 @@ let toDoItems = [];
 // Usando querySelector seleccionar dicho span por su id ('createdBy') y luego usando innerHTML
 // agregar tu nombre al final del texto actual. Ej: 'Aplicación creada por Franco'
 // Tu código acá:
-document.querySelector('#createdBy').innerHTML = document.querySelector('#createdBy').innerHTML + ' Brian'
+document.querySelector('#createdBy').innerHTML += ' Brian'
 
 // Crear una clase denominada 'ToDo' cuyo constructor debe recibir un único parámetro del tipo string
 // con el nombre 'description' que será justamente la descripción del ToDo.
@@ -51,7 +51,7 @@ ToDo.prototype.completeToDo = function() {
 function buildToDo(todo, index) {
   // Tu código acá:
   let toDoShell = document.createElement('div');
-  toDoShell.className = 'toDoShell';
+  toDoShell.setAttribute('class', 'toDoShell');
 
   let toDoText = document.createElement('span');
   toDoText.innerHTML = todo.description;
@@ -60,12 +60,12 @@ function buildToDo(todo, index) {
   let toDoCheckbox = document.createElement('input')
   toDoCheckbox.type = 'checkbox';
   toDoCheckbox.id = index;
-  toDoCheckbox.className = 'completeCheckbox';
+  toDoCheckbox.setAttribute('class', 'completeCheckbox');
   toDoCheckbox.addEventListener('click', () => completeToDo(event));
   toDoShell.appendChild(toDoCheckbox);
 
   if (todo.complete) {
-    toDoText.className = 'completeText';
+    toDoText.setAttribute('class', 'completeText');
     toDoCheckbox.checked = true;
   }
 
