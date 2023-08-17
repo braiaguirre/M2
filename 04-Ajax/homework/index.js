@@ -1,78 +1,51 @@
-$('#boton').on('click', () => {
-    if ($('#lista').hasClass('collapsed')) {
-        $('#lista').empty();
+let amigosBtn = $('#boton');
+let amigosUl = $('#lista');
+let searchBtn = $('#search');
+let searchSpan = $('#amigo');
+let searchInput = $('#input');
+let searchClearBtn = $('#searchClear');
+let deleteBtn = $('#delete');
+let deleteInput = $('#inputDelete');
+let deleteSpan = $('#successDelete');
+
+let amigosLoad = () => {
+    if (amigosUl.hasClass('collapsed')) {
+        amigosUl.empty();
         $.get('http://localhost:5000/amigos', (data) => {
-            data.forEach(x => $('<li/>', {text: x.name}).appendTo($('#lista')))
+            data.forEach(x => $('<li/>', {text: x.name}).appendTo(amigosUl))
         });
-        $('#boton').text('Ocultar');
-        $('#lista').removeClass('collapsed');
+        amigosBtn.text('Ocultar');
+        amigosUl.removeClass('collapsed');
     } else {
-        $('#boton').text('Ver');
-        $('#lista').empty();
-        $('#lista').addClass('collapsed');
-    }    
-})
-
-$('#search').on('click', () => {
-    $.get(`http://localhost:5000/amigos/${$('#input').val()}`, (data) => {
-        $('#amigo').append(`<h3>${data.name}`);
-        $('#amigo').append(`<p>${data.age} años`);
-        $('#amigo').append(`<p>${data.email}`);
-    });
-    $('#input').val('');
-    $('#input').focus();
-})
-
-$('#searchClear').on('click', () => {
-    $('#amigo').empty();
-})
-
-$('#delete').on('click', () => {
-    $.ajax({
-        type: "DELETE",
-        url: `http://localhost:5000/amigos/${$('#inputDelete').val()}`,
-        success: () => $('#successDelete').text('Eliminado correctamente.')
-    });
-});
-
-let nuevoAmigoMaker = () => {
-    //return $.get('http://localhost:5000/amigos', (data) => data);
-    let id = 88;
-    let name = $('#inputAddName').val();
-    let age = $('#inputAddAge').val();
-    let email = $('#inputAddEmail').val();
-    return {
-        id: id,
-        name: name,
-        age: age,
-        email: email
-    }
+        amigosBtn.text('Ver');
+        amigosUl.empty();
+        amigosUl.addClass('collapsed');
+    }  
 }
 
+let searchLoad = () => {
+    $.get(`http://localhost:5000/amigos/${searchInput.val()}`, (data) => {
+        searchSpan.append(`<h3>${data.name}`);
+        searchSpan.append(`<p>${data.age} años`);
+        searchSpan.append(`<p>${data.email}`);
+    });
+    searchInput.val('');
+    searchInput.focus();
+}
 
-$('#add').on('click', () => {
-    $.post( "http://localhost:5000/amigos/", {a:'a'} );
+let deleteLoad = () => {
+    $.ajax({
+        type: "DELETE",
+        url: `http://localhost:5000/amigos/${deleteInput.val()}`,
+        success: () => alert('Eliminado correctamente.')
+    });
+    deleteInput.val('');
+    amigosBtn.text('Ver');
+    amigosUl.empty();
+    amigosUl.addClass('collapsed');
+}
 
-    // $.ajax({
-    //     type: "POST",
-    //     url: 'http://localhost:5000/amigos/',
-    //     success: (data) => {
-    //     data.push({
-    //         id: 999,
-    //         name: "asd",
-    //         age: 25,
-    //         email: "asd"
-    //     })}
-    // });
-    // return this;
-    // let nuevoAmigo = nuevoAmigoMaker();
-    // $.post('http://localhost:5000/amigos/', {
-    //     name: 'asd',
-    //     age: 25,
-    //     email: 'asd'
-    // }),
-    // alert('ok');
-
-})
-
-
+amigosBtn.on('click', amigosLoad);
+searchBtn.on('click', searchLoad);
+searchClearBtn.on('click', () => searchSpan.empty());
+deleteBtn.on('click', deleteLoad);
