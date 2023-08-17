@@ -1,5 +1,6 @@
 (function () {
-  var whiteboard = window.whiteboard;
+
+  var whiteboard = require('./event-emitter');
   var socket = window.io(window.location.origin);
 
   socket.on("connect", function () {
