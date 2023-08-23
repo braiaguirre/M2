@@ -3,13 +3,14 @@ import {useState, useEffect} from 'react';
 import Cards from './components/Cards.jsx';
 import Nav from './components/Nav.jsx'
 import axios from 'axios';
+import {Route, Routes} from 'react-router-dom';
 
 export default function App() {
    const [characters, setCharacters] = useState([]);
    
    function onSearch(id) {
       for (let i = 0; i < characters.length; i++) {
-         if (characters[i].id == id) {
+         if (characters[i].id === Number(id)) {
             window.alert('¡Ya está agregado!');
             return;
       }  }
@@ -21,7 +22,7 @@ export default function App() {
    }
 
    function onClose(id) {
-      setCharacters(characters.filter(char => char.id != id))
+      setCharacters(characters.filter(char => char.id !== Number(id)))
    }
 
    return (

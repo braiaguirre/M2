@@ -57,7 +57,7 @@ Comenzaremos creando un componete llamador **Deatil** el cual solo mostrara una 
 
 Luego, dirígete al archivo **`App.js`**. Ahora crearemos las rutas de los componentes. Cada componente debe renderizarse en las siguientes rutas:
 
--  **Nav** debe que aparecer en todas las rutas.
+-  **Nav** debe aparecer en todas las rutas.
 -  **Cards** debe aparecer solo en la ruta **`/home`**.
 -  **About** debe aparecer solo en la ruta **`/about`**.
 -  **Detail** debe aparecer solo en la ruta **`/detail/:id`**.

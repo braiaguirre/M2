@@ -1,7 +1,6 @@
 import Card from './Card';
 
 export default function Cards({characters, onClose}) {
-   console.log(characters);
    return (
       <div>
          {characters.map(character => 
