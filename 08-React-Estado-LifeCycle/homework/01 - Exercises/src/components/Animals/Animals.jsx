@@ -9,8 +9,12 @@ export default class Animals extends React.Component {
   render() {
     return (
     <div>
-      <h5>{this.props.animal}</h5>
+      {console.log(this.props)}
       
+      <h5>{this.props[0]?.name}</h5>
+      <img src={this.props[0]?.image} alt={this.props[0]?.name} width='300px' />
+      <span>{this.props[0]?.specie}</span>
+            
     </div>
   )}
 }

@@ -28,7 +28,7 @@ export default function Zoo() {
   }, [])
 
   const handleInputChange = (e) => setZoo(e.target.value);
-  const handleSpecies = () => {};
+  const handleSpecies = (e) => {};
   const handleAllSpecies = () => {};
 
   return (
@@ -37,6 +37,7 @@ export default function Zoo() {
       <input type="text" value={zoo.zooName} onChange={handleInputChange} />
       <h1>{zoo.zooName}</h1>
       <Species species={zoo.species} props={(handleSpecies, handleAllSpecies)} />
+      {console.log(zoo.animals)}
       <Animals animals={zoo.animals} />
     </div>
   );
