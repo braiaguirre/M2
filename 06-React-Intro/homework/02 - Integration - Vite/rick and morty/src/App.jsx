@@ -1,16 +1,38 @@
 import './App.css';
-import {useState} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Nav from './components/Nav.jsx'
 import About from './views/About.jsx';
 import Detail from './views/Detail.jsx';
 import Home from './views/Home.jsx'
 import Error404 from './views/Error404.jsx';
+import Login from './views/Login.jsx';
+
 
 export default function App() {
    const [characters, setCharacters] = useState([]);
    const [mem, setMem] = useState([]);
+   const [access, setAccess] = useState(false);
+   const location = useLocation();
+   const EMAIL = 'prueba@gmail.com';
+   const PASSWORD = 'prueba12';
+   const navigate = useNavigate();
+
+   function logIn({email, password}) {
+      if (email === EMAIL && password === PASSWORD) {
+         setAccess(true);
+         navigate(`/home`);
+      }
+   }
+
+   function logOut({email, password}) {
+      setAccess(false);
+   }
+
+   useEffect(() => {
+      !access && navigate('/');
+   }, [access]);
    
    function onSearch(id) {
       if (mem.includes(id)) {
@@ -33,8 +55,9 @@ export default function App() {
 
    return (
       <div className='App'>
-         <Nav onSearch={onSearch} />
+         {location.pathname != '/' && <Nav onSearch={onSearch} logOut={logOut} />}
          <Routes>
+            <Route path='/' element={<Login logIn={logIn} />} />
             <Route path='/home' element={<Home characters={characters} onClose={onClose} />} />
             <Route path='/about' element={<About />} />
             <Route path='/detail/:id' element={<Detail />} />
