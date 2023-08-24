@@ -2,10 +2,10 @@ import './App.css';
 import {useState} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import axios from 'axios';
-import Cards from './components/Cards.jsx';
 import Nav from './components/Nav.jsx'
 import About from './views/About.jsx';
 import Detail from './views/Detail.jsx';
+import Home from './views/Home.jsx'
 import Error404 from './views/Error404.jsx';
 
 export default function App() {
@@ -35,7 +35,7 @@ export default function App() {
       <div className='App'>
          <Nav onSearch={onSearch} />
          <Routes>
-            <Route path='/home' element={<Cards characters={characters} onClose={onClose} />} />
+            <Route path='/home' element={<Home characters={characters} onClose={onClose} />} />
             <Route path='/about' element={<About />} />
             <Route path='/detail/:id' element={<Detail />} />
             <Route path='*' element={<Error404 />} />

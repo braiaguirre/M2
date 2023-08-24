@@ -15,7 +15,7 @@ export default function About() {
            }
         });
         return setCharacter({});
-     }, [id]);
+     }, []);
 
     return (
         <div>
