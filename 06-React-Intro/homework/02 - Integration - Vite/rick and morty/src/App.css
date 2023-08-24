@@ -1,10 +1,117 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Material+Symbols+Outlined');
+
+body {
+  background-color: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-family: 'roboto', serif;
+  color: #ffffffe3;
+}
+
 #root {
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
 #navbar {
-  
   padding: 200;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: #0f0f0f;
+  color: #ffffffe3;
+  border-color: #ffffff34;
+  text-transform: uppercase;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 10px 20px;
+}
+
+button:hover {
+  transition: 500ms;
+  color: #ffffffe3;
+  border-color: #97ce4c;
+}
+
+input {
+  height: 30px;
+  width: 300px;
+  border-radius: 5px;
+  margin: 10px;
+  border: 1px solid #0f0f0f;
+  background-color: #ffffff34;
+  padding: 5px 10px;
+}
+
+input:hover {
+  border: 1px solid #97ce4c;
+  transition: 500ms;
+}
+
+input:focus {
+  border: 1px solid #97ce4c;
+}
+
+#navbar {
+  width: 100%;
+}
+
+#navbar-menu {
+  display: flex;
+  justify-content: center;
+}
+
+#navbar-menu ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+#navbar-menu li {
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline;
+  padding: 10px;
+}
+
+#navbar-menu li:hover {
+  text-decoration: underline;
+}
+
+#login-section {
+  text-align: center;
+  padding: 40px 60px 65px 60px;
+  border-radius: 10px;
+  border: 1px solid #97ce4c;
+}
+
+#login-section div {
+  display: flex;
+  align-items: center;
+}
+
+#login-section-logo {
+  display: block;
+  max-width: 350px;
+}
+
+#login-section form {
+  display: block;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48;
+  color: #97ce4c;
 }

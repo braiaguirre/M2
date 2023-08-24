@@ -1,14 +1,14 @@
 import {useState} from 'react';
 import validation from '../utils/validation.js';
+import logo from '../assets/logo.png';
 
 export default function Login({logIn}) {
     const [userData, setUserData] = useState({email: '', password: ''})
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({email: true, password: true});
 
     function changeHandler(e) {        
         setUserData({...userData, [e.target.name]: e.target.value})
         setErrors(validation(userData));
-        console.log(errors)
     }
 
     function submitHandler(e) {
@@ -19,20 +19,24 @@ export default function Login({logIn}) {
             return;
         }
     }
-
     return (
-        <form onSubmit={submitHandler}>
-            <label>Email:</label>
-            <input name="email" value={userData.email} onChange={changeHandler} /> 
-            <br />
-            <span>{errors.email ? errors.email : ''}</span> 
-            <br />
-            <label>Password:</label>
-            <input type="password" name="password" value={userData.password} onChange={changeHandler} /> 
-            <br />
-            <span>La contraseña debe tener entre 6 y 10 caracteres, y al menos un número.</span> 
-            <br /> <br />
-            <button type="submit">Submit</button>
-        </form>
+        <section id="login-section">
+            <img id="login-section-logo" src={logo} />
+            <form onSubmit={submitHandler}>
+                {/* <label>Email:</label> */}
+                <div>
+                    <input name="email" value={userData.email} onChange={changeHandler} placeholder="Email"/> 
+                    <span className="material-symbols-outlined" width="20px">{errors.email ? 'close' : 'done'}</span>
+                </div>
+                <br />
+                {/* <label>Password:</label> */}
+                <div>
+                    <input type="password" name="password" value={userData.password} onChange={changeHandler} placeholder="Password" />
+                    <span className="material-symbols-outlined" width="20px">{errors.password ? 'close' : 'done'}</span>
+                </div>
+                <br /> <br />
+                <button type="submit">Login</button>
+            </form>
+        </section>
     )
 }
