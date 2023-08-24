@@ -11,10 +11,6 @@ body {
   color: #ffffffe3;
 }
 
-#root {
-  text-align: center;
-}
-
 #navbar {
   padding: 200;
 }
@@ -84,36 +80,6 @@ input:focus {
 
 #navbar-menu li:hover {
   text-decoration: underline;
-}
-
-#login-section {
-  text-align: center;
-  padding: 40px 60px 65px 60px;
-  border-radius: 10px;
-  animation: glow 1s infinite alternate;
-}
-
-@keyframes glow {
-  from {
-    box-shadow: 0 0 50px 15px #98ce4c62;
-  }
-  to {
-    box-shadow: 0 0 50px 15px #97ce4c;
-  }
-}
-
-#login-section div {
-  display: flex;
-  align-items: center;
-}
-
-#login-section-logo {
-  display: block;
-  max-width: 350px;
-}
-
-#login-section form {
-  display: block;
 }
 
 .material-symbols-outlined {

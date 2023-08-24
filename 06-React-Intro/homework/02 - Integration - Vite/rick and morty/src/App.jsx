@@ -9,7 +9,6 @@ import Home from './views/Home.jsx'
 import Error404 from './views/Error404.jsx';
 import Login from './views/Login.jsx';
 
-
 export default function App() {
    const [characters, setCharacters] = useState([]);
    const [mem, setMem] = useState([]);
