@@ -1,8 +1,6 @@
 import SearchBar from './SearchBar.jsx';
 import {Link, useNavigate} from 'react-router-dom';
 
-let rand = () => (Math.random() * 826).toFixed();
-
 export default function Nav({onSearch, logOut}) {
     const navigate = useNavigate();
 
