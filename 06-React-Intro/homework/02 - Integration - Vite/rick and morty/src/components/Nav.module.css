@@ -1,0 +1,27 @@
+.menu {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.menu ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu ul li {
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline;
+    padding: 10px;
+}
+
+.menu li:hover {
+    text-decoration: underline;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+}

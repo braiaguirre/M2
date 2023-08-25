@@ -32,7 +32,7 @@ export default function Login({logIn}) {
                     <input type="password" name="password" value={userData.password} onChange={changeHandler} placeholder="Password" />
                     <span className="material-symbols-outlined" width="20px">{errors.password ? 'close' : 'done'}</span>
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit">Ingresar</button>
             </form>
         </section>
     )

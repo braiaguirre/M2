@@ -11,10 +11,6 @@ body {
   color: #ffffffe3;
 }
 
-#navbar {
-  padding: 200;
-}
-
 #app {
   display: flex;
   justify-content: center;
@@ -25,7 +21,6 @@ button {
   color: #ffffffe3;
   border-color: #ffffff34;
   text-transform: uppercase;
-  margin: 10px;
   border-radius: 5px;
   font-size: 14px;
   padding: 10px 20px;
@@ -41,7 +36,6 @@ input {
   height: 30px;
   width: 300px;
   border-radius: 5px;
-  margin: 10px;
   border: 1px solid #0f0f0f;
   background-color: #ffffff34;
   padding: 5px 10px;
@@ -54,32 +48,6 @@ input:hover {
 
 input:focus {
   border: 1px solid #97ce4c;
-}
-
-#navbar {
-  width: 100%;
-}
-
-#navbar-menu {
-  display: flex;
-  justify-content: center;
-}
-
-#navbar-menu ul{
-  list-style-type: none;
-  padding: 0;
-}
-
-#navbar-menu li {
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-  display: inline;
-  padding: 10px;
-}
-
-#navbar-menu li:hover {
-  text-decoration: underline;
 }
 
 .material-symbols-outlined {

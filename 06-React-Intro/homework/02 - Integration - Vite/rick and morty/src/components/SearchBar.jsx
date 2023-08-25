@@ -1,4 +1,5 @@
 import {useRef, useState} from 'react';
+import styles from './SearchBar.module.css';
 
 export default function SearchBar({onSearch}) {
    const [inputValue, setInputValue] = useState('');
@@ -12,9 +13,8 @@ export default function SearchBar({onSearch}) {
    }
 
    return (
-      <div>
-         <input type='search' ref={inputRef} value={inputValue} onChange={changeHandler} />
-         <br />
+      <div className={styles.search}>
+         <input type='search' ref={inputRef} value={inputValue} onChange={changeHandler} placeholder="ID" />
          <button onClick={clickHandler}>Agregar</button>
          <button onClick={() => onSearch(rand())}>Aleatorio</button>
       </div>

@@ -1,22 +1,20 @@
 import SearchBar from './SearchBar.jsx';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import styles from './Nav.module.css'
 
 export default function Nav({onSearch, logOut}) {
     const navigate = useNavigate();
 
     return (
         <>
-            <div id="navbar-menu">
+            <div class={styles.menu}>
                 <ul>
                     <li onClick={() => navigate('/home')}>Home</li>
                     <li onClick={() => navigate('/about')}>About</li>
                     <li onClick={logOut}>Logout</li>
                 </ul>
-                {/* <div><Link to={'/home'}>Home</Link></div>
-                <div><Link to={'/about'}>About</Link></div>
-                <div><Link to={'/'} onClick={logOut}>Logout</Link></div> */}
             </div>
-            <div id="navbar-search">
+            <div class={styles.search}>
                 <SearchBar onSearch={onSearch} />
             </div>
         </>
