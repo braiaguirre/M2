@@ -9,8 +9,10 @@ import Detail from './views/Detail.jsx';
 import Home from './views/Home.jsx'
 import Error404 from './views/Error404.jsx';
 import Login from './views/Login.jsx';
+document.title = 'Rick And Morty';
 
 export default function App() {
+
    const [characters, setCharacters] = useState([]);
    const [mem, setMem] = useState([]);
    const [access, setAccess] = useState(false);
@@ -35,6 +37,10 @@ export default function App() {
    }, [access]);
    
    function onSearch(id) {
+      if (id === '') {
+         alert('¡Debes ingresar un ID!');
+         return;
+      }
       if (mem.includes(id)) {
          alert('¡Ese personaje ya fue agregado!')
          return;
@@ -49,24 +55,31 @@ export default function App() {
       });
    }
 
-   function onClose(id) {
-      setCharacters(characters.filter(char => char.id !== Number(id)))
+   function onClose(id = -1) {
+      if (id === -1) setCharacters([]);
+      else setCharacters(characters.filter(char => char.id !== Number(id)))
    }
 
    return (
       <>
-         <div className={styles.navbar}>
-            {location.pathname != '*' && access && <Nav onSearch={onSearch} logOut={logOut} />}
-         </div>
-         <div className={styles.app}>
-            <Routes>
-               <Route path='/' element={<Login logIn={logIn} />} />
-               <Route path='/home' element={<Home characters={characters} onClose={onClose} />} />
-               <Route path='/about' element={<About />} />
-               <Route path='/detail/:id' element={<Detail />} />
-               <Route path='*' element={<Error404 />} />
-            </Routes>
-         </div>
+         {access && <div className={styles.navbar}>
+            <Nav onSearch={onSearch} logOut={logOut} onClose={onClose} />
+         </div>}
+         <>
+            {!access && <div className={styles.login}>
+               <Routes>
+                  <Route path='/' element={<Login logIn={logIn}/>} />
+               </Routes>
+            </div>}
+            {access && <div className={styles.app}>
+               <Routes>
+                  <Route path='/home' element={<Home characters={characters} onClose={onClose} />} />
+                  <Route path='/about' element={<About />} />
+                  <Route path='/detail/:id' element={<Detail />} />
+                  <Route path='*' element={<Error404 />} />
+               </Routes>
+            </div>}
+         </>
       </>
    );
 }
