@@ -1,3 +1,4 @@
+import styles from './Card.module.css'
 import {Link, useNavigate} from 'react-router-dom';
 
 export default function Card(props) {
@@ -7,16 +8,15 @@ export default function Card(props) {
    const navigateHandler = () => navigate(`/detail/${id}`);
 
    return (
-      <div>
+      <div className={`${styles.card} ${styles.backgroundA}`}>
          <button onClick={() => onClose(id)}>X</button>
-         <Link to={`/detail/${id}`} >
-            <h2>Nombre: {name}.</h2>
-         </Link>
-         <h2>Status: {status}.</h2>
-         <h2>Especie: {species}.</h2>
-         <h2>Género: {gender}.</h2>
-         <h2>Origen: {origin}.</h2>
+         <a onClick={navigateHandler}><h2>{name}</h2></a>
+         <h3>Status: {status}</h3>
+         <h3>Especie: {species}</h3>
+         <h3>Género: {gender}</h3>
+         <h3>Origen: {origin}</h3>
          <img src={image} alt='imagen' onClick={navigateHandler} />
+         
       </div>
    );
 }
