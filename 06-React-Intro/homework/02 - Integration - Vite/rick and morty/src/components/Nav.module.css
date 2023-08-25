@@ -1,7 +1,27 @@
-.menu {
+/* -------- NAVBAR -------- */
+
+.navbar {
+    padding: 10px 0 10px 0;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 35px 5px #98ce4c00;
+  }
+  to {
+    box-shadow: 0 0 35px 5px #97ce4c;
+  }
+}
+
+/* -------- MENU -------- */
+
+.menu {
+    margin-left: 50px;
 }
 
 .menu ul{
@@ -19,9 +39,11 @@
 
 .menu li:hover {
     text-decoration: underline;
+    text-underline-offset: 6px;
 }
 
+/* -------- SEARCH -------- */
+
 .search {
-    display: flex;
-    flex-direction: column;
+    margin-right: 50px;
 }

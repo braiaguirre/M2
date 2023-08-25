@@ -20,6 +20,7 @@ export default function Login({logIn}) {
             return;
         }
     }
+
     return (
         <section className={styles.login}>
             <img src={logo} />

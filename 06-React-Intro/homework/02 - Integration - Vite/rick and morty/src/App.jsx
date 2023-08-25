@@ -1,4 +1,5 @@
-import './App.css';
+// import './App.css';
+import styles from './App.module.css';
 import {useState, useEffect} from 'react';
 import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios';
@@ -54,10 +55,10 @@ export default function App() {
 
    return (
       <>
-         <div id='navbar'>
-            {location.pathname != '/' && <Nav onSearch={onSearch} logOut={logOut} />}
+         <div className={styles.navbar}>
+            {location.pathname != '*' && access && <Nav onSearch={onSearch} logOut={logOut} />}
          </div>
-         <div id='app'>
+         <div className={styles.app}>
             <Routes>
                <Route path='/' element={<Login logIn={logIn} />} />
                <Route path='/home' element={<Home characters={characters} onClose={onClose} />} />
@@ -65,7 +66,7 @@ export default function App() {
                <Route path='/detail/:id' element={<Detail />} />
                <Route path='*' element={<Error404 />} />
             </Routes>
-         </div>
+            </div>
       </>
    );
 }
