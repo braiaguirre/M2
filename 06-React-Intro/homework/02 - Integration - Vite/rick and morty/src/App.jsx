@@ -22,7 +22,7 @@ export default function App() {
    const navigate = useNavigate();
 
    function logIn({email, password}) {
-      if (email === EMAIL && password === PASSWORD) {
+      if (email.toLowerCase() === EMAIL && password === PASSWORD) {
          setAccess(true);
          navigate(`/home`);
       }

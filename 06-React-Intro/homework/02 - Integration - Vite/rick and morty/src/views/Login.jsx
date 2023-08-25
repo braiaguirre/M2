@@ -22,7 +22,7 @@ export default function Login({logIn}) {
     }
 
     return (
-        <section className={styles.login}>
+        <div className={styles.login}>
             <img src={logo} />
             <form onSubmit={submitHandler}>
                 <div>
@@ -35,6 +35,6 @@ export default function Login({logIn}) {
                 </div>
                 <button type="submit">Login</button>
             </form>
-        </section>
+        </div>
     )
 }
