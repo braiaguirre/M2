@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import styles from './Login.module.css';
-import validation from '../utils/validation.js';
-import logo from '../assets/logo.png';
+import validation from '../../utils/validation.js';
+import logo from '../../assets/logo.png';
 
 export default function Login({logIn}) {
     const [userData, setUserData] = useState({email: '', password: ''})

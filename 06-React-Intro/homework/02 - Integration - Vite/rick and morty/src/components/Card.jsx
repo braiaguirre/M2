@@ -13,7 +13,7 @@ export default function Card(props) {
       setLoading(true);
       setTimeout(() => {
          setLoading(false)
-      }, 1000);
+      }, 1500);
    }, []);
 
    return (
@@ -24,10 +24,10 @@ export default function Card(props) {
                <>
                   <button onClick={() => onClose(id)}>X</button>
                   <a onClick={navigateHandler}><h2>{name}</h2></a>
-                  <h3>Status: {status}</h3>
-                  <h3>Especie: {species}</h3>
-                  <h3>Género: {gender}</h3>
-                  <h3>Origen: {origin}</h3>
+                  <h3><b>Status:</b> {status}</h3>
+                  <h3><b>Especie:</b> {species}</h3>
+                  <h3><b>Género:</b> {gender}</h3>
+                  <h3><b>Origen:</b> {origin}</h3>
                   <img src={image} alt='imagen' onClick={navigateHandler} />
                </>
             )}
