@@ -1,5 +1,5 @@
 import styles from './Nav.module.css'
-import SearchBar from './SearchBar.jsx';
+import SearchBar from '../SearchBar/SearchBar.jsx';
 import {useNavigate} from 'react-router-dom';
 
 export default function Nav({onSearch, logOut, onClose}) {

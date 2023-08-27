@@ -2,9 +2,9 @@ import styles from './App.module.css';
 import {useState, useEffect} from 'react';
 import {Route, Routes, useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import Nav from './components/Nav.jsx'
+import Nav from './components/Nav/Nav.jsx'
 import About from './views/About.jsx';
-import Detail from './views/Detail.jsx';
+import Detail from './views/Detail/Detail.jsx';
 import Home from './views/Home.jsx'
 import Error404 from './views/Error404.jsx';
 import Login from './views/Login/Login.jsx';

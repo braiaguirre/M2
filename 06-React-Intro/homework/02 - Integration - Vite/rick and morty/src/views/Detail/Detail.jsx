@@ -1,3 +1,4 @@
+import styles from './Detail.module.css';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
 import {useState, useEffect} from 'react';
@@ -18,14 +19,16 @@ export default function About() {
      }, []);
 
     return (
-        <div>
-            {console.log(character)}
-            <h2>Nombre: {character.name}.</h2>
-            <h2>Status: {character.status}.</h2>
-            <h2>Especie: {character.species}.</h2>
-            <h2>Género: {character.gender}.</h2>
-            <h2>Origen: {character.origin?.name}.</h2>
-            <img src={character.image} alt='imagen' />
+        <div className={styles.detail}>
+            <div className={styles.card}>
+               {console.log(character)}
+               <h2>Nombre: {character.name}.</h2>
+               <h2>Status: {character.status}.</h2>
+               <h2>Especie: {character.species}.</h2>
+               <h2>Género: {character.gender}.</h2>
+               <h2>Origen: {character.origin?.name}.</h2>
+               <img src={character.image} alt='imagen' />
+            </div>
       </div>
     )
 }
