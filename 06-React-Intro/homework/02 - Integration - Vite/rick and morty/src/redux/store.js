@@ -1,4 +1,4 @@
 import {createStore} from 'redux';
 import reducer from './reducer.js';
 
-export const favs = createStore(reducer);
+export const store = createStore(reducer);

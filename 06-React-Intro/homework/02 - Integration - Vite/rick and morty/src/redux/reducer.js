@@ -9,6 +9,7 @@ export default function reducer (state = initialState, action) {
         case REMOVE_FAV:
             return {...state, myFavorites: myFavorites.map(character => character.id !== Number(action.payload))};
         default:
+            console.log(state);
             return {...state};
     }
 }

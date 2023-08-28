@@ -10,6 +10,7 @@ export default function Nav({onSearch, logOut, onClose}) {
             <div className={styles.menu}>
                 <ul>
                     <li onClick={() => navigate('/home')}>Home</li>
+                    <li onClick={() => navigate('/favorites')}>Favorites</li>
                     <li onClick={() => navigate('/about')}>About</li>
                     <li onClick={logOut}>Logout</li>
                 </ul>

@@ -8,13 +8,13 @@ import Detail from './views/Detail/Detail.jsx';
 import Home from './views/Home.jsx'
 import Error404 from './views/Error404.jsx';
 import Login from './views/Login/Login.jsx';
-import {connect} from 'react-redux';
+import {Favorites} from './views/Favorites/Favorites.jsx';
 document.title = 'Rick And Morty';
 
 export default function App() {
    const [characters, setCharacters] = useState([]);
    const [mem, setMem] = useState([]);
-   const [access, setAccess] = useState(false);
+   const [access, setAccess] = useState(true);
    const location = useLocation();
    const EMAIL = 'prueba@gmail.com';
    const PASSWORD = 'prueba12';
@@ -79,6 +79,7 @@ export default function App() {
             {access && <div className={styles.app}>
                <Routes>
                   <Route path='/home' element={<Home characters={characters} onClose={onClose} />} />
+                  <Route path='/favorites' element={<Favorites />} />
                   <Route path='/about' element={<About />} />
                   <Route path='/detail/:id' element={<Detail />} />
                   <Route path='*' element={<Error404 />} />
