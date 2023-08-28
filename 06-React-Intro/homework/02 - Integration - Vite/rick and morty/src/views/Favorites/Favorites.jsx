@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-export function Favorites({myFavorites}) {
+function Favorites({myFavorites}) {
     return (
         <div className={styles.favorites}>
             {myFavorites.map(character => <Card props={character} />)}
@@ -16,4 +16,4 @@ export function Favorites({myFavorites}) {
     )
 }
 
-export default connect(mapStateToProps, null)(Card);
+export default connect(mapStateToProps, null)(Favorites);

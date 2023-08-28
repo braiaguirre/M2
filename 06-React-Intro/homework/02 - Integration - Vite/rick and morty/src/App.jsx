@@ -8,7 +8,7 @@ import Detail from './views/Detail/Detail.jsx';
 import Home from './views/Home.jsx'
 import Error404 from './views/Error404.jsx';
 import Login from './views/Login/Login.jsx';
-import {Favorites} from './views/Favorites/Favorites.jsx';
+import Favorites from './views/Favorites/Favorites.jsx';
 document.title = 'Rick And Morty';
 
 export default function App() {

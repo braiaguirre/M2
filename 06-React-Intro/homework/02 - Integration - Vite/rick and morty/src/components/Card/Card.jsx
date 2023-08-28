@@ -16,16 +16,16 @@ function Card(props) {
          props.removeFav(id);
       } else {
          setIsFav(true);
-         props.addFav(props);
+         props.addFav({id, name, status, species, origin, gender, image});
    }  }
 
    const navigateHandler = () => navigate(`/detail/${id}`);
 
    useEffect(() => {
       props.myFavorites.forEach(fav => {
-         console.log(fav);
-         if (fav.id === props.id) setIsFav(true);
+         if (fav.id === id) setIsFav(true);
       });
+      console.log(props.myFavorites);
    }, [props.myFavorites]);
 
    useEffect(() => {
@@ -57,13 +57,14 @@ function Card(props) {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      addFav: () => dispatch(addFav()),
-      removeFav: () => dispatch(removeFav())
+      addFav: (character) => {
+         dispatch(addFav(character));
+      },
+      removeFav: (id) => dispatch(removeFav(id))
    }
 }
 
 const mapStateToProps = (state) => {
-   // console.log(state);
    return {
       myFavorites: state.myFavorites
    }
