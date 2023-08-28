@@ -22,7 +22,7 @@ export default function Card(props) {
                <div className={styles.spinner}></div>
             ) : (
                <>
-                  <button onClick={() => onClose(id)}>X</button>
+                  <button onClick={() => onClose(id)}>CLOSE</button>
                   <a onClick={navigateHandler}><h2>{name}</h2></a>
                   <h3><b>Status:</b> {status}</h3>
                   <h3><b>Especie:</b> {species}</h3>
