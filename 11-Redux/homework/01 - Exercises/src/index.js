@@ -28,5 +28,9 @@ store.subscribe(renderContador);
 // hagan un dispatch al store de la acción correspondiente:
 const plusButton = document.getElementById('incremento');
 const minusButton = document.getElementById('decremento');
-plusButton.addEventListener('click', () => store.dispatch(incremento()));
+const oddButton = document.getElementById('incrementoImpar');
+const asyncButton = document.getElementById('incrementoAsync');
+plusButton.addEventListener('click', () => store.dispatch(incremento(1)));
 minusButton.addEventListener('click', () => store.dispatch(decremento()));
+oddButton.addEventListener('click', () => store.getState().contador % 2 !== 0) && store.dispatch(incremento(1));
+asyncButton.addEventListener('click', () => setTimeout(store.dispatch(incremento(1)), 2000));
