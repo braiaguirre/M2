@@ -1,6 +1,6 @@
 import styles from './Favorites.module.css';
 import {connect} from 'react-redux';
-import {Card} from '../../components/Card/Card.jsx';
+import Card from '../../components/Card/Card.jsx';
 
 const mapStateToProps = (state) => {
     return {

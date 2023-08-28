@@ -4,44 +4,29 @@ import {useNavigate} from 'react-router-dom';
 import {addFav, removeFav} from '../../redux/actions.js';
 import {connect} from 'react-redux';
 
-const mapDispatchToProps = (dispatch) => {
-   return {
-      addFav: () => dispatch(addFav()),
-      removeFav: () => dispatch(removeFav())
-   }
-}
-
-const mapStateToProps = (state) => {
-   console.log(state);
-   return {
-      myFavorites: state.myFavorites
-   }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
-
-export function Card(props) {
-   const {id, name, status, species, origin, gender, image, onClose, addFav, removeFav, myFavorites} = props;
+function Card(props) {
+   const {id, name, status, species, origin, gender, image, onClose} = props;
    const [loading, setLoading] = useState(false);
    const [isFav, setIsFav] = useState(false);
    const navigate = useNavigate();
-   
+
    const favoriteHandler = () => {
       if (isFav) {
          setIsFav(false);
-         removeFav(id);
+         props.removeFav(id);
       } else {
          setIsFav(true);
-         addFav(props);
+         props.addFav(props);
    }  }
 
    const navigateHandler = () => navigate(`/detail/${id}`);
 
    useEffect(() => {
-      myFavorites.forEach(fav => {
+      props.myFavorites.forEach(fav => {
+         console.log(fav);
          if (fav.id === props.id) setIsFav(true);
       });
-   }, [myFavorites]);
+   }, [props.myFavorites]);
 
    useEffect(() => {
       setLoading(true);
@@ -69,3 +54,19 @@ export function Card(props) {
       </div>
    );
 }
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      addFav: () => dispatch(addFav()),
+      removeFav: () => dispatch(removeFav())
+   }
+}
+
+const mapStateToProps = (state) => {
+   // console.log(state);
+   return {
+      myFavorites: state.myFavorites
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
