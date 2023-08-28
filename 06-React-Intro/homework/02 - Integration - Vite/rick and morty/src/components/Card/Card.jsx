@@ -1,13 +1,44 @@
 import styles from './Card.module.css'
 import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {addFav, removeFav} from '../../redux/actions.js';
+import {connect} from 'react-redux';
 
-export default function Card(props) {
+export function Card(props) {
+   const {id, name, status, species, origin, gender, image, onClose, addFav, removeFav} = props;
    const [loading, setLoading] = useState(false);
+   const [isFav, setIsFav] = useState(false);
    const navigate = useNavigate();
-   const {id, name, status, species, origin, gender, image, onClose} = props;
-
+   
+   const favoriteHandler = (e) => {
+      if (isFav) {
+         setIsFav(false);
+         removeFav(id);
+      } else {
+         setIsFav(true);
+         addFav(props);
+      }
+   }
    const navigateHandler = () => navigate(`/detail/${id}`);
+
+   const mapDispatchToProps = (dispatch) => {
+      return {
+         addFav: () => dispatch(addFav()),
+         removeFav: () => dispatch(removeFav())
+      }
+   }
+
+   const mapStateToProps = (state) => {
+      return {
+         myFavorites: state.myFavorites
+      }
+   }
+
+   useEffect(() => {
+      myFavorites.forEach((fav) => {
+         if (fav.id === props.id) setIsFav(true);
+      });
+   }, [myFavorites]);
 
    useEffect(() => {
       setLoading(true);
@@ -23,6 +54,7 @@ export default function Card(props) {
             ) : (
                <>
                   <button onClick={() => onClose(id)}>CLOSE</button>
+                  {isFav ? <button onClick={favoriteHandler}>❤️</button> : <button onClick={favoriteHandler}>🤍</button>}
                   <a onClick={navigateHandler}><h2>{name}</h2></a>
                   <h3><b>Status:</b> {status}</h3>
                   <h3><b>Especie:</b> {species}</h3>
@@ -34,3 +66,5 @@ export default function Card(props) {
       </div>
    );
 }
+
+export const connect = connect(mapStateToProps, mapDispatchToProps)(Card);
