@@ -8,6 +8,7 @@ import Detail from './views/Detail/Detail.jsx';
 import Home from './views/Home.jsx'
 import Error404 from './views/Error404.jsx';
 import Login from './views/Login/Login.jsx';
+import {connect} from 'react-redux';
 document.title = 'Rick And Morty';
 
 export default function App() {
