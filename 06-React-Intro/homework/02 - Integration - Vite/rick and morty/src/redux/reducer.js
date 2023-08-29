@@ -7,7 +7,7 @@ export default function reducer (state = initialState, action) {
         case ADD_FAV:
             return {...state, myFavorites: [...state.myFavorites, action.payload]};
         case REMOVE_FAV:
-            return {...state, myFavorites: state.myFavorites.map(character => character.id !== Number(action.payload))};
+            return {...state, myFavorites: state.myFavorites.filter(character => character.id !== Number(action.payload))};
         default:
             return state;
     }

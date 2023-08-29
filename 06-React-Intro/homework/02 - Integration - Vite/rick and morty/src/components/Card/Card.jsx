@@ -5,7 +5,7 @@ import {addFav, removeFav} from '../../redux/actions.js';
 import {connect} from 'react-redux';
 
 function Card(props) {
-   const {id, name, status, species, origin, gender, image, onClose} = props;
+   const {id, name, status, species, origin, gender, image, onClose, myFavorites, addFav, removeFav} = props;
    const [loading, setLoading] = useState(false);
    const [isFav, setIsFav] = useState(false);
    const navigate = useNavigate();
@@ -13,20 +13,19 @@ function Card(props) {
    const favoriteHandler = () => {
       if (isFav) {
          setIsFav(false);
-         props.removeFav(id);
+         removeFav(id);
       } else {
          setIsFav(true);
-         props.addFav({id, name, status, species, origin, gender, image});
+         addFav(props);
    }  }
 
    const navigateHandler = () => navigate(`/detail/${id}`);
 
    useEffect(() => {
-      props.myFavorites.forEach(fav => {
+      myFavorites.forEach(fav => {
          if (fav.id === id) setIsFav(true);
       });
-      console.log(props.myFavorites);
-   }, [props.myFavorites]);
+   }, [myFavorites]);
 
    useEffect(() => {
       setLoading(true);
