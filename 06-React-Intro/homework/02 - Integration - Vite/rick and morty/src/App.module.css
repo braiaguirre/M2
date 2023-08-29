@@ -50,14 +50,46 @@ input {
 }
 
 input:hover {
-  border: 1px solid #97ce4c;
-  outline: 0px solid #97ce4c;
+  border: 1px solid #e89ac7;
+  outline: 0px solid #e89ac7;
   transition: 500ms;
 }
 
 input:focus {
-  border: 1px solid #97ce4c;
-  outline: 0px solid #97ce4c;
+  border: 1px solid #e89ac7;
+  outline: 0px solid #e89ac7;
+}
+
+/* ------- SELECT ------- */
+
+select {
+  background-color: #ffffff34;
+  border-color: #ffffff34;
+  border-radius: 8px;
+  border: 1px solid #0f0f0f;
+  margin: 25px 5px 5px;
+  padding: 8px;
+  padding: 10px 10px 6px 10px;
+  transition: 500ms;
+  width: 150px;
+}
+
+select:hover {
+  transition: 500ms;
+  border-color: #e89ac7;
+  appearance: none;
+}
+
+option {
+  color: #ffffff34;
+  background-color: #ffffff34 !important;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+option:hover {
+  background-color: #ffffff34;
+  border: 1px solid #0f0f0f;
 }
 
 /* ------- ICONS ------- */

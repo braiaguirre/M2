@@ -41,8 +41,8 @@
 }
 
 .menu li:hover {
-  color: #97ce4c;
-  border-bottom: 1px solid #97ce4c;
+  color: #e89ac7;
+  border-bottom: 1px solid #e89ac7;
   transition: 500ms;
 }
 

@@ -6,10 +6,10 @@ export default function Cards({characters, onClose}) {
       <div className={styles.cards}>
          <div className={styles.helper}>
             <span>¡Add some characters!</span>
-            <span class={`material-symbols-outlined ${styles.arrow}`}>switch_access_shortcut</span>
+            <span className={`material-symbols-outlined ${styles.arrow}`}>switch_access_shortcut</span>
          </div>
          {characters.map(character => 
-            <Card character={character} onClose={onClose} />
+            <Card character={character} onClose={onClose} key={character.id} />
          )}
       </div>
    );

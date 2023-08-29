@@ -2,11 +2,13 @@ import styles from './Card.module.css'
 import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {addFav, removeFav} from '../../redux/actions.js';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
-function Card({character, onClose, myFavorites, addFav, removeFav}) {
+export default function Card({character, onClose}) {
    const [loading, setLoading] = useState(false);
    const [isFav, setIsFav] = useState(false);
+   const myFavorites = useSelector(state => state.myFavorites)
+   const dispatch = useDispatch();
    const navigate = useNavigate();
 
    // NAVIGATE
@@ -16,10 +18,10 @@ function Card({character, onClose, myFavorites, addFav, removeFav}) {
    const favoriteHandler = () => {
       if (isFav) {
          setIsFav(false);
-         removeFav(character.id);
+         dispatch(removeFav(character.id));
       } else {
          setIsFav(true);
-         addFav(character);
+         dispatch(addFav(character));
    }  }
    
    useEffect(() => {
@@ -44,7 +46,6 @@ function Card({character, onClose, myFavorites, addFav, removeFav}) {
                <>
                   {/* CARD BUTTONS */}
                   <div>
-                     <button onClick={() => onClose(id)}><span className='material-symbols-outlined'>close</span></button>
                      {!isFav ? 
                         <button onClick={favoriteHandler}>
                            <span className='material-symbols-outlined'>favorite</span>
@@ -52,6 +53,7 @@ function Card({character, onClose, myFavorites, addFav, removeFav}) {
                            <button onClick={favoriteHandler}>
                            <span className={`material-symbols-outlined ${styles.isFav}`}>favorite</span>
                         </button>}
+                        {onClose ? <button onClick={() => onClose(id)}><span className='material-symbols-outlined'>close</span></button> : <></>}
                   </div>
                   {/* CHARACTER INFO */}
                   <a onClick={navigateHandler}><h2>{character.name}</h2></a>
@@ -66,17 +68,17 @@ function Card({character, onClose, myFavorites, addFav, removeFav}) {
    );
 }
 
-const mapDispatchToProps = (dispatch) => {
-   return {
-      addFav: (character) => dispatch(addFav(character)),
-      removeFav: (id) => dispatch(removeFav(id))
-   }
-}
+// const mapDispatchToProps = (dispatch) => {
+//    return {
+//       addFav: (character) => dispatch(addFav(character)),
+//       removeFav: (id) => dispatch(removeFav(id))
+//    }
+// }
 
-const mapStateToProps = (state) => {
-   return {
-      myFavorites: state.myFavorites
-   }
-}
+// const mapStateToProps = (state) => {
+//    return {
+//       myFavorites: state.myFavorites
+//    }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+// export default connect(mapStateToProps, mapDispatchToProps)(Card);
