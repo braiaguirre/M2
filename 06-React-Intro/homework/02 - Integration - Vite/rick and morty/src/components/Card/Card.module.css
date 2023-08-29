@@ -1,6 +1,10 @@
 .card {
     align-items: center;
     animation: glow 1s infinite alternate;
+    background-image: url('../../assets/17206928.jpg');
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 120% 120%;
     border: 5px solid #050023;
     border-radius: 8px;
     display: flex;
@@ -12,14 +16,6 @@
     text-align: center;
     width: 400px;
 }
-
-.backgroundA {
-    background-image: url('../../assets/17206928.jpg');
-    background-repeat: no-repeat;
-    background-position: top;
-    background-size: 120% 120%;
-}
-
 .card::before {
     content: "";
 }
@@ -36,24 +32,31 @@
 /* ------- BUTTON ------- */
 
 .card button {
-    margin-top: 25px;
-    margin-bottom: 20px;
+    margin: 25px 5px 5px;
     border-color: #ffffff34;
+    padding: 10px 10px 6px 10px;
+    font-size: 10px;
     transition: 500ms;
 }
   
 .card button:hover {
     transition: 500ms;
     border-color: #e89ac7;
-  }
+}
+
+.isFav {
+    color: #e89ac7 !important;
+}
 
 /* ------- IMAGES ------- */
 
 .card img {
-    margin: 40px 0;
     border-radius: 8px;
-    cursor: pointer;
     box-shadow: 0 0 20px 3px #0f0f0f65;
+    cursor: pointer;
+    margin: 40px 0;
+    height: 300px;
+    width: 300px;
 }
 
 /* ------- LINKS + TITLES ------- */

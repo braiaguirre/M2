@@ -4,50 +4,62 @@ import {useNavigate} from 'react-router-dom';
 import {addFav, removeFav} from '../../redux/actions.js';
 import {connect} from 'react-redux';
 
-function Card(props) {
-   const {id, name, status, species, origin, gender, image, onClose, myFavorites, addFav, removeFav} = props;
+function Card({character, onClose, myFavorites, addFav, removeFav}) {
    const [loading, setLoading] = useState(false);
    const [isFav, setIsFav] = useState(false);
    const navigate = useNavigate();
 
+   // NAVIGATE
+   const navigateHandler = () => navigate(`/detail/${id}`);
+
+   // SET FAVORITES
    const favoriteHandler = () => {
       if (isFav) {
          setIsFav(false);
-         removeFav(id);
+         removeFav(character.id);
       } else {
          setIsFav(true);
-         addFav(props);
+         addFav(character);
    }  }
-
-   const navigateHandler = () => navigate(`/detail/${id}`);
-
+   
    useEffect(() => {
       myFavorites.forEach(fav => {
-         if (fav.id === id) setIsFav(true);
+         if (fav.id === character.id) setIsFav(true);
       });
    }, [myFavorites]);
 
+   // LOADING
    useEffect(() => {
       setLoading(true);
       setTimeout(() => {
          setLoading(false)
-      }, 1500);
+      }, 800);
    }, []);
 
    return (
-      <div className={`${styles.card} ${styles.backgroundA}`}>
+      <div className={styles.card}>
          {loading ? (
                <div className={styles.spinner}></div>
             ) : (
                <>
-                  <button onClick={() => onClose(id)}>CLOSE</button>
-                  {isFav ? <button onClick={favoriteHandler}>❤️</button> : <button onClick={favoriteHandler}>🤍</button>}
-                  <a onClick={navigateHandler}><h2>{name}</h2></a>
-                  <h3><b>Status:</b> {status}</h3>
-                  <h3><b>Especie:</b> {species}</h3>
-                  <h3><b>Género:</b> {gender}</h3>
-                  <h3><b>Origen:</b> {origin}</h3>
-                  <img src={image} alt='imagen' onClick={navigateHandler} />
+                  {/* CARD BUTTONS */}
+                  <div>
+                     <button onClick={() => onClose(id)}><span className='material-symbols-outlined'>close</span></button>
+                     {!isFav ? 
+                        <button onClick={favoriteHandler}>
+                           <span className='material-symbols-outlined'>favorite</span>
+                        </button> : 
+                           <button onClick={favoriteHandler}>
+                           <span className={`material-symbols-outlined ${styles.isFav}`}>favorite</span>
+                        </button>}
+                  </div>
+                  {/* CHARACTER INFO */}
+                  <a onClick={navigateHandler}><h2>{character.name}</h2></a>
+                  <h3><b>Status:</b> {character.status}</h3>
+                  <h3><b>Especie:</b> {character.species}</h3>
+                  <h3><b>Género:</b> {character.gender}</h3>
+                  <h3><b>Origen:</b> {character.origin?.name}</h3>
+                  <img src={character.image} alt='imagen' onClick={navigateHandler} />
                </>
             )}
       </div>
@@ -56,9 +68,7 @@ function Card(props) {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      addFav: (character) => {
-         dispatch(addFav(character));
-      },
+      addFav: (character) => dispatch(addFav(character)),
       removeFav: (id) => dispatch(removeFav(id))
    }
 }

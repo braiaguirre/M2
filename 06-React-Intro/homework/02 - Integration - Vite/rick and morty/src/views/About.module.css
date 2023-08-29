@@ -1,14 +1,6 @@
-.cards {
+.about {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-.helper {
-    margin-left: 75%;
-}
-
-.arrow {
-    transform: scale(-1, 1);
 }
