@@ -1,19 +1,23 @@
 import styles from './Favorites.module.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {filterCards, orderCards} from '../../redux/actions.js';
 import Card from '../../components/Card/Card.jsx';
 
 export default function Favorites() {
-    const [aux, setAux] = useState(false);
+    // const [aux, setAux] = useState(false);
+    const [order, setOrder] = useState('N');
     const myFavorites = useSelector(state => state.myFavorites);
     const dispatch = useDispatch();
 
     // FILTERS
-    const filterHandler = (e) => dispatch(filterCards(e.target.value));
+    const filterHandler = (e) => {
+        const value = e.target.value;
+        dispatch(filterCards({value, order}))
+    };
     const orderHandler = (e) => {
         dispatch(orderCards(e.target.value));
-        setAux(!aux);
+        // setAux(!aux);
     }
 
     return (

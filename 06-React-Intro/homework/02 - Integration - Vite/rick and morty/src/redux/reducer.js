@@ -18,13 +18,15 @@ export default function reducer (state = initialState, action) {
                     myFavorites: state.myFavorites.filter(character => character.id !== Number(action.payload)),
                 };
         case FILTER:
+            console.log(action.payload);
             if (action.payload === 'All') 
+                
                     return {...state, myFavorites: [...state.allCharacters]};
             return {...state, 
                     myFavorites: state.allCharacters.filter(character => character.gender === action.payload)};
         case ORDER:
             if (action.payload === 'N') 
-                    return {...state, myFavorites: [...state.allCharacters]};
+                    return {...state, myFavorites: [...state.allCharacters].sort((a, b) => action.payload === 'A' ? a.id - b.id : b.id - a.id)};
             return {...state, 
                     myFavorites: state.myFavorites.sort((a, b) => action.payload === 'A' ? a.id - b.id : b.id - a.id)};
         default:
