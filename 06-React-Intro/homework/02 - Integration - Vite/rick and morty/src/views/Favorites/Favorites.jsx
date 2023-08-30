@@ -7,7 +7,7 @@ import Card from '../../components/Card/Card.jsx';
 export default function Favorites() {
     const [orderFilter, setOrderFilter] = useState('N'); // local state -> order filter
     const [genderFilter, setGenderFilter] = useState('All') // local state - gender filter
-    const favs = useSelector(state => state.favs);
+    const filteredFavs = useSelector(state => state.filteredFavs);
     const dispatch = useDispatch();
 
     // FILTERS
@@ -40,7 +40,7 @@ export default function Favorites() {
                 <button>Reset filters</button>
             </div>
             <div className={styles.cards}>
-                {(favs).map(character=> <Card character={character} key={character.id}/>)}
+                {(filteredFavs).map(character=> <Card character={character} key={character.id}/>)}
             </div>
         </div>
     )
@@ -48,7 +48,7 @@ export default function Favorites() {
 
 // const mapStateToProps = (state) => {
 //     return {
-//         favs: state.favs,
+//         filteredFavs: state.filteredFavs,
 //     }
 // }
 

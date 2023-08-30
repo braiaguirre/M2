@@ -7,7 +7,7 @@ import {useSelector, useDispatch} from 'react-redux';
 export default function Card({character, onClose}) {
    const [loading, setLoading] = useState(false);
    const [isFav, setIsFav] = useState(false);
-   const favs = useSelector(state => state.favs)
+   const filteredFavs = useSelector(state => state.filteredFavs)
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
@@ -25,10 +25,10 @@ export default function Card({character, onClose}) {
    }  }
    
    useEffect(() => {
-      favs.forEach(fav => {
+      filteredFavs.forEach(fav => {
          if (fav.id === character.id) setIsFav(true);
       });
-   }, [favs]);
+   }, [filteredFavs]);
 
    // LOADING
    useEffect(() => {
@@ -53,7 +53,7 @@ export default function Card({character, onClose}) {
                            <button onClick={favoriteHandler}>
                            <span className={`material-symbols-outlined ${styles.isFav}`}>favorite</span>
                         </button>}
-                        {onClose ? <button onClick={() => onClose(id)}><span className='material-symbols-outlined'>close</span></button> : <></>}
+                        {onClose ? <button onClick={() => onClose(character.id)}><span className='material-symbols-outlined'>close</span></button> : <></>}
                   </div>
                   {/* CHARACTER INFO */}
                   <a onClick={navigateHandler}><h2>{character.name}</h2></a>
@@ -77,7 +77,7 @@ export default function Card({character, onClose}) {
 
 // const mapStateToProps = (state) => {
 //    return {
-//       favs: state.favs
+//       filteredFavs: state.filteredFavs
 //    }
 // }
 
