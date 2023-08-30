@@ -5,7 +5,8 @@ import {
     FILTER, 
     ORDER, 
     GET_CHARACTER,
-    ACCESS
+    ACCESS,
+    CLEAR_ERROR
 } from './action-types';
 
 const initialState = {
@@ -19,20 +20,25 @@ export default function reducer (state = initialState, action) {
     switch (action.type) {
         // GET CHARACTER
         case GET_CHARACTER:
-            state.allCharacters.forEach(character => {
-                if (character.id === action.payload) return {
+            if (!action.payload.id) return {
+                ...state,
+                error: 'Introduce a valid ID!'
+            }
+            for (let i = 0; i < state.allCharacters.length; i++) {
+                if (state.allCharacters[i].id === action.payload.id) return {
                     ...state,
                     error: 'This character was already added!'
-                }
-            })
+                };
+            }
             return {
                 ...state,
-                allCharacters: [...state.allCharacters, action.payload]
+                allCharacters: [...state.allCharacters, action.payload],
             };
 
         // REMOVE CHARACTER
         case REMOVE_CHARACTER:
             if (action.payload === -1) return {
+                ...state,
                 allCharacters: [],
                 allFavs: [],
                 filteredFavs: []
@@ -85,6 +91,13 @@ export default function reducer (state = initialState, action) {
 				...state, 
 				filteredFavs: [...state.filteredFavs]
 			};
+
+        // CLEAR ERROR
+        case CLEAR_ERROR:
+            return {
+                ...state,
+                error: ''
+            }
 
 		// DEFAULT
         default:

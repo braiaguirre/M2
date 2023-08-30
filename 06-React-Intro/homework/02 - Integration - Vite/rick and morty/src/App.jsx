@@ -17,13 +17,13 @@ import Nav from './components/Nav/Nav.jsx'
 import {useState, useEffect} from 'react';
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {getCharacter, removeCharacter} from './redux/actions.js';
+import {getCharacter, removeCharacter, clearError} from './redux/actions.js';
 
 export default function App() {
    const [mem, setMem] = useState([]);
    const [access, setAccess] = useState(true);
    const characters = useSelector(state => state.allCharacters);
-   const error = useSelector(state => state.error); // ESTOY CON ESTO!!!!!!!!!!! ----
+   const error = useSelector(state => state.error);
    const EMAIL = 'prueba@gmail.com';
    const PASSWORD = 'prueba12';
    const navigate = useNavigate();
@@ -44,17 +44,14 @@ export default function App() {
    useEffect(() => {
       !access && navigate('/');
    }, [access]);
+
+   useEffect(() => {
+      if (error !== '') alert(error);
+   }, [error])
    
    // ADD CHARACTER
    function onSearch(id) {
-      if (id === '') {
-         alert('¡Debes ingresar un ID!');
-         return;
-      }
-      if (mem.includes(id)) {
-         alert('¡Ese personaje ya fue agregado!')
-         return;
-      }
+      dispatch(clearError);
       dispatch(getCharacter(id));
       setMem(mem => [...mem, Number(id)]);
    }

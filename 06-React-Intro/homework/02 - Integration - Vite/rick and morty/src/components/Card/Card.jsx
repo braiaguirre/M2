@@ -58,9 +58,9 @@ export default function Card({character, onClose}) {
                   {/* CHARACTER INFO */}
                   <a onClick={navigateHandler}><h2>{character.name}</h2></a>
                   <h3><b>Status:</b> {character.status}</h3>
-                  <h3><b>Especie:</b> {character.species}</h3>
-                  <h3><b>Género:</b> {character.gender}</h3>
-                  <h3><b>Origen:</b> {character.origin?.name}</h3>
+                  <h3><b>Species:</b> {character.species}</h3>
+                  <h3><b>Gender:</b> {character.gender}</h3>
+                  <h3><b>Origin:</b> {character.origin?.name}</h3>
                   <img src={character.image} alt='imagen' onClick={navigateHandler} />
                </>
             )}

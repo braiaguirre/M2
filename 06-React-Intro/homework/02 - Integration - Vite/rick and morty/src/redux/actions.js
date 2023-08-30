@@ -5,7 +5,8 @@ import {
     REMOVE_FAV, 
     FILTER, 
     ORDER,
-    ACCESS
+    ACCESS,
+    CLEAR_ERROR
 } from './action-types';
 import axios from 'axios';
 
@@ -62,5 +63,11 @@ export const access = ({email, password}) => {
             email: email,
             password: password
         }
+    }
+}
+
+export const clearError = () => {
+    return {
+        type: CLEAR_ERROR,
     }
 }
