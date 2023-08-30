@@ -1,51 +1,53 @@
 import {ADD_FAV, REMOVE_FAV, FILTER, ORDER} from './action-types';
 
 const initialState = {
-    allCharacters: [],
-    myFavorites: []
+    allFavs: [],
+    favs: []
 };
 
 export default function reducer (state = initialState, action) {
     switch (action.type) {
+        // ADD FAVORITE
         case ADD_FAV:
             return {...state, 
-                    allCharacters: [...state.allCharacters, action.payload],
-                    myFavorites: [...state.myFavorites, action.payload]
+                    allFavs: [...state.allFavs, action.payload],
+                    favs: [...state.favs, action.payload]
                 };
+
+        // REMOVE FAVORITE
         case REMOVE_FAV:
             return {...state, 
-                    allCharacters: state.allCharacters.filter(character => character.id !== Number(action.payload)),
-                    myFavorites: state.myFavorites.filter(character => character.id !== Number(action.payload)),
+                    allFavs: state.allFavs.filter(character => character.id !== Number(action.payload)),
+                    favs: state.favs.filter(character => character.id !== Number(action.payload)),
                 };
+
+        // GENDER FILTER
         case FILTER:
-            if (action.payload === 'All') 
-                return {
-                    ...state, 
-                    myFavorites: [...state.allCharacters]};
+            if (action.payload === 'All') return {
+				...state, 
+				favs: [...state.allFavs]};
+
             else return {
                 ...state, 
-                myFavorites: state.allCharacters.filter(character => character.gender === action.payload)};
+                favs: state.allFavs.filter(character => character.gender === action.payload)};
+
+        // ORDER FITLER
         case ORDER:
-            switch (action.payload) {
-                case 'A':
-                    return {
-                        ...state, 
-                        myFavorites: state.myFavorites.sort((a, b) => {
-                            if (a.id < b.id) return 1;
-                            if (a.id > b.id) return -1;
-                            return 0;
-                        })};
-                case 'D':
-                    return {
-                        ...state, 
-                        myFavorites: state.myFavorites.sort((a, b) => {
-                            if (a.id < b.id) return -1;
-                            if (a.id > b.id) return 1;
-                            return 0;
-                        })};
-                default:
-                    return state;
-            }
+			if (action.payload === 'N')
+				state.favs = [...state.allFavs]
+
+			if (action.payload === 'A') 
+				state.favs.sort((a, b) => a.id > b.id ? 1 : -1)
+
+			if (action.payload === 'D') 
+				state.favs.sort((a, b) => a.id < b.id ? 1 : -1)
+
+			return {
+				...state, 
+				favs: [...state.favs]
+			};
+
+		// DEFAULT
         default:
             return state;
     }

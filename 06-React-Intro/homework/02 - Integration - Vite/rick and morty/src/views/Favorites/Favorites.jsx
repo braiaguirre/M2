@@ -5,38 +5,42 @@ import {filterCards, orderCards} from '../../redux/actions.js';
 import Card from '../../components/Card/Card.jsx';
 
 export default function Favorites() {
-    const [order, setOrder] = useState('N');
-    const myFavorites = useSelector(state => state.myFavorites);
+    const [orderFilter, setOrderFilter] = useState('N'); // local state -> order filter
+    const [genderFilter, setGenderFilter] = useState('All') // local state - gender filter
+    const favs = useSelector(state => state.favs);
     const dispatch = useDispatch();
 
     // FILTERS
     const filterHandler = (e) => {
-        dispatch(filterCards(e.target.value));
-        // dispatch(orderCards(order))
+        setGenderFilter(e.target.value); // sets new local state
+        dispatch(filterCards(e.target.value)); // dispatches gender filter
+        if (orderFilter !== 'N') dispatch(orderCards(orderFilter)); // if an order filter is selected, dispatch order filter
     }
     const orderHandler = (e) => {
-        setOrder(e.target.value);
-        dispatch(orderCards(order));
+        setOrderFilter(e.target.value); // sets new local state
+        dispatch(orderCards(e.target.value)); // dispatches order filter
+        if (genderFilter !== 'All') dispatch(filterCards(genderFilter)); // if a gender filter is selected, dispatch gender filter
     }
 
     return (
         <div className={styles.favorites}>
             <div className={styles.filters}>
                 <select onChange={orderHandler}>
-                    <option value="N">Sin ordenar</option>
-                    <option value="A">Ascendente</option>
-                    <option value="D">Descendente</option>
+                    <option value="N">No order</option>
+                    <option value="A">Ascending</option>
+                    <option value="D">Descending</option>
                 </select>
-            <select onChange={filterHandler}>
-                <option value="All">Todos</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Genderless">Genderless</option>
-                <option value="unknown">Unknown</option>
-            </select>
+                <select onChange={filterHandler}>
+                    <option value="All">All characters</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Genderless">Genderless</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+                <button>Reset filters</button>
             </div>
             <div className={styles.cards}>
-                {(myFavorites).map(character=> <Card character={character} key={character.id}/>)}
+                {(favs).map(character=> <Card character={character} key={character.id}/>)}
             </div>
         </div>
     )
@@ -44,7 +48,7 @@ export default function Favorites() {
 
 // const mapStateToProps = (state) => {
 //     return {
-//         myFavorites: state.myFavorites,
+//         favs: state.favs,
 //     }
 // }
 

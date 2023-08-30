@@ -7,7 +7,7 @@ import {useSelector, useDispatch} from 'react-redux';
 export default function Card({character, onClose}) {
    const [loading, setLoading] = useState(false);
    const [isFav, setIsFav] = useState(false);
-   const myFavorites = useSelector(state => state.myFavorites)
+   const favs = useSelector(state => state.favs)
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
@@ -25,10 +25,10 @@ export default function Card({character, onClose}) {
    }  }
    
    useEffect(() => {
-      myFavorites.forEach(fav => {
+      favs.forEach(fav => {
          if (fav.id === character.id) setIsFav(true);
       });
-   }, [myFavorites]);
+   }, [favs]);
 
    // LOADING
    useEffect(() => {
@@ -77,7 +77,7 @@ export default function Card({character, onClose}) {
 
 // const mapStateToProps = (state) => {
 //    return {
-//       myFavorites: state.myFavorites
+//       favs: state.favs
 //    }
 // }
 
