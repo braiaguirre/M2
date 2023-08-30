@@ -1,4 +1,12 @@
-import {GET_CHARACTER, REMOVE_CHARACTER, ADD_FAV, REMOVE_FAV, FILTER, ORDER} from './action-types';
+import {
+    GET_CHARACTER, 
+    REMOVE_CHARACTER, 
+    ADD_FAV, 
+    REMOVE_FAV, 
+    FILTER, 
+    ORDER,
+    ACCESS
+} from './action-types';
 import axios from 'axios';
 
 export const getCharacter = (id) => {
@@ -46,3 +54,13 @@ export const orderCards = (order) => {
         payload: order
     };
 };
+
+export const access = ({email, password}) => {
+    return {
+        type: ACCESS,
+        payload: {
+            email: email,
+            password: password
+        }
+    }
+}

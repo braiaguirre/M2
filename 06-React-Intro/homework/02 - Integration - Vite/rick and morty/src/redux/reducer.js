@@ -1,15 +1,30 @@
-import {ADD_FAV, REMOVE_CHARACTER, REMOVE_FAV, FILTER, ORDER, GET_CHARACTER} from './action-types';
+import {
+    ADD_FAV, 
+    REMOVE_CHARACTER, 
+    REMOVE_FAV, 
+    FILTER, 
+    ORDER, 
+    GET_CHARACTER,
+    ACCESS
+} from './action-types';
 
 const initialState = {
     allCharacters: [],
     allFavs: [],
-    filteredFavs: []
+    filteredFavs: [],
+    error: ''
 };
 
 export default function reducer (state = initialState, action) {
     switch (action.type) {
         // GET CHARACTER
         case GET_CHARACTER:
+            state.allCharacters.forEach(character => {
+                if (character.id === action.payload) return {
+                    ...state,
+                    error: 'This character was already added!'
+                }
+            })
             return {
                 ...state,
                 allCharacters: [...state.allCharacters, action.payload]

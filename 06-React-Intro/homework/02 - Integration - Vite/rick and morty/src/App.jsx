@@ -1,45 +1,51 @@
+// STYLES
+document.title = 'Rick And Morty';
 import styles from './App.module.css';
+
+// VIEWS
+import Home from './views/Home.jsx'
+import Detail from './views/Detail/Detail.jsx';
+import Login from './views/Login/Login.jsx';
+import Favorites from './views/Favorites/Favorites.jsx';
+import Error404 from './views/Error404.jsx';
+import About from './views/About.jsx';
+
+// COMPONENTS
+import Nav from './components/Nav/Nav.jsx'
+
+// ??
 import {useState, useEffect} from 'react';
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {getCharacter, removeCharacter} from './redux/actions.js';
-import Nav from './components/Nav/Nav.jsx'
-import About from './views/About.jsx';
-import Detail from './views/Detail/Detail.jsx';
-import Home from './views/Home.jsx'
-import Error404 from './views/Error404.jsx';
-import Login from './views/Login/Login.jsx';
-import Favorites from './views/Favorites/Favorites.jsx';
-document.title = 'Rick And Morty';
 
 export default function App() {
-   const characters = useSelector(state => state.allCharacters);
    const [mem, setMem] = useState([]);
    const [access, setAccess] = useState(true);
+   const characters = useSelector(state => state.allCharacters);
+   const error = useSelector(state => state.error); // ESTOY CON ESTO!!!!!!!!!!! ----
    const EMAIL = 'prueba@gmail.com';
    const PASSWORD = 'prueba12';
    const navigate = useNavigate();
    const dispatch = useDispatch();
 
-   // LOGIN
+   // ACCESS - LOGIN - LOGOUT
    function logIn({email, password}) {
       if (email.toLowerCase() === EMAIL && password === PASSWORD) {
          setAccess(true);
          navigate(`/home`);
       }
    }
-
-   // LOGOUT
+   
    function logOut({email, password}) {
       setAccess(false);
    }
 
-   // ACCESS
    useEffect(() => {
       !access && navigate('/');
    }, [access]);
    
-   // GET CHARACTER FROM API
+   // ADD CHARACTER
    function onSearch(id) {
       if (id === '') {
          alert('¡Debes ingresar un ID!');
@@ -50,18 +56,20 @@ export default function App() {
          return;
       }
       dispatch(getCharacter(id));
+      setMem(mem => [...mem, Number(id)]);
    }
 
-   // CLOSE CARD
+   // REMOVE CHARACTER
    function onClose(id = -1) {
+      console.log(mem);
       if (id === -1) {
          dispatch(removeCharacter(id));
          setMem([]);
       } else {
          dispatch(removeCharacter(id));
-         // setCharacters(characters.filter(char => char.id !== Number(id)))
-         setMem(mem.filter(char => char.id !== Number(id)));
+         setMem(mem.filter(character => character.id !== Number(id)));
       }
+      console.log(mem);
    }
 
    // APP
