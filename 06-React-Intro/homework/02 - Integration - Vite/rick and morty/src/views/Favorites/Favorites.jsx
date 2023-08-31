@@ -23,26 +23,38 @@ export default function Favorites() {
     }
 
     return (
-        <div className={styles.favorites}>
-            <div className={styles.filters}>
-                <select onChange={orderHandler}>
-                    <option value="N">No order</option>
-                    <option value="A">Ascending</option>
-                    <option value="D">Descending</option>
-                </select>
-                <select onChange={filterHandler}>
-                    <option value="All">All characters</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Genderless">Genderless</option>
-                    <option value="unknown">Unknown</option>
-                </select>
-                <button>Reset filters</button>
-            </div>
-            <div className={styles.cards}>
-                {(filteredFavs).map(character=> <Card character={character} key={character.id}/>)}
-            </div>
-        </div>
+        <>
+            {filteredFavs.length === 0 &&
+                <div className={styles.helper}>
+                <span>NO FAVORITES YET!</span>
+                <span className={styles.icon}></span>
+                {/* <span className={`material-symbols-outlined ${styles.arrow}`}>switch_access_shortcut</span> */}
+                </div>
+            }
+            
+            {filteredFavs.length > 0 &&
+                <div className={styles.favorites}>
+                    <div className={styles.filters}>
+                        <select onChange={orderHandler}>
+                            <option value="N">No order</option>
+                            <option value="A">Ascending</option>
+                            <option value="D">Descending</option>
+                        </select>
+                        <select onChange={filterHandler}>
+                            <option value="All">All characters</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Genderless">Genderless</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                        <button>Reset filters</button>
+                    </div>
+                    <div className={styles.cards}>
+                        {(filteredFavs).map(character=> <Card character={character} key={character.id}/>)}
+                    </div>
+                </div>
+            }
+        </>
     )
 }
 
