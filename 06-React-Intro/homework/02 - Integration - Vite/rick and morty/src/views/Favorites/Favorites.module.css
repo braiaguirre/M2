@@ -33,13 +33,24 @@
 
 .helper {
     align-items: center;
+    animation: glow 1s infinite alternate;
     display: flex;
     font-family: 'montserrat', serif;
     font-weight: bolder;
     font-size: 40px;
     justify-content: center;
     height: 90vh;
+    transition: opacity 2s ease-in;
     width: 100%;
+}
+
+@keyframes glow {
+    from {
+      text-shadow: 0 0 10px #98ce4c00;
+    }
+    to {
+      text-shadow: 0 0 10px #97ce4c;
+    }
 }
 
 .icon {
