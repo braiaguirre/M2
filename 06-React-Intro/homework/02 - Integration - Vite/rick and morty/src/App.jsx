@@ -3,12 +3,12 @@ document.title = 'Rick And Morty';
 import styles from './App.module.css';
 
 // VIEWS
-import Home from './views/Home.jsx'
+import Home from './views/Home/Home.jsx'
 import Detail from './views/Detail/Detail.jsx';
 import Login from './views/Login/Login.jsx';
 import Favorites from './views/Favorites/Favorites.jsx';
-import Error404 from './views/Error404.jsx';
-import About from './views/About.jsx';
+import Error404 from './views/Error404/Error404.jsx';
+import About from './views/About/About.jsx';
 
 // COMPONENTS
 import Nav from './components/Nav/Nav.jsx'
@@ -17,7 +17,7 @@ import Nav from './components/Nav/Nav.jsx'
 import {useState, useEffect} from 'react';
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {getCharacter, removeCharacter, clearError} from './redux/actions.js';
+import {getCharacter, removeCharacter, clearError} from './redux/actions/actions.js';
 
 export default function App() {
    const [mem, setMem] = useState([]);

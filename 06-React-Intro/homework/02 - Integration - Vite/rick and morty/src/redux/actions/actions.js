@@ -12,7 +12,7 @@ import axios from 'axios';
 
 export const getCharacter = (id) => {
     return (dispatch) => {
-        axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+        axios.get(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
             return dispatch({
                 type: GET_CHARACTER,
                 payload: data

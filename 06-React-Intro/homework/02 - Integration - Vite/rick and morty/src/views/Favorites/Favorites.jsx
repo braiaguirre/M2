@@ -1,7 +1,7 @@
 import styles from './Favorites.module.css';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {filterCards, orderCards} from '../../redux/actions.js';
+import {filterCards, orderCards} from '../../redux/actions/actions.js';
 import Card from '../../components/Card/Card.jsx';
 
 export default function Favorites() {

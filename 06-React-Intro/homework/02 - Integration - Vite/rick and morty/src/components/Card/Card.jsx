@@ -1,7 +1,7 @@
 import styles from './Card.module.css'
 import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {addFav, removeFav} from '../../redux/actions.js';
+import {addFav, removeFav} from '../../redux/actions/actions.js';
 import {useSelector, useDispatch} from 'react-redux';
 
 export default function Card({character, onClose}) {

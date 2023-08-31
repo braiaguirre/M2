@@ -1,6 +1,6 @@
 import styles from './About.module.css';
-import Card from '../components/Card/Card.jsx';
-import img from '../assets/about-profile.jpg';
+import Card from '../../components/Card/Card.jsx';
+import img from '../../assets/about-profile.jpg';
 
 export default function About({onClose}) {
     const character = {

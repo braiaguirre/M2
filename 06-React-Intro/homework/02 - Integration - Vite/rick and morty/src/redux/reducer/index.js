@@ -7,7 +7,7 @@ import {
     GET_CHARACTER,
     ACCESS,
     CLEAR_ERROR
-} from './action-types';
+} from '../actions/action-types.js';
 
 const initialState = {
     allCharacters: [],
