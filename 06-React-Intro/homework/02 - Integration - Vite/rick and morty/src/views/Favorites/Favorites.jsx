@@ -11,50 +11,56 @@ export default function Favorites() {
     const dispatch = useDispatch();
 
     // FILTERS
-    const filterHandler = (e) => {
-        setGenderFilter(e.target.value); // sets new local state
-        dispatch(filterCards(e.target.value)); // dispatches gender filter
-        if (orderFilter !== 'N') dispatch(orderCards(orderFilter)); // if an order filter is selected, dispatch order filter
-    }
     const orderHandler = (e) => {
         setOrderFilter(e.target.value); // sets new local state
         dispatch(orderCards(e.target.value)); // dispatches order filter
         if (genderFilter !== 'All') dispatch(filterCards(genderFilter)); // if a gender filter is selected, dispatch gender filter
     }
+    const statusHandler = (e) => {
+        
+    }
+    const genderHandler = (e) => {
+        setGenderFilter(e.target.value); // sets new local state
+        dispatch(filterCards(e.target.value)); // dispatches gender filter
+        if (orderFilter !== 'N') dispatch(orderCards(orderFilter)); // if an order filter is selected, dispatch order filter
+    }
 
     return (
         <>
-            {filteredFavs.length === 0 &&
-                <div className={styles.helper}>
-                <span>NO FAVORITES YET!</span>
-                <span className={styles.icon}></span>
-                {/* <span className={`material-symbols-outlined ${styles.arrow}`}>switch_access_shortcut</span> */}
+            <div className={styles.favorites}>
+                <div className={styles.filters}>
+                <select onChange={orderHandler}>
+                    <option value="N">No order</option>
+                    <option value="A">Ascending</option>
+                    <option value="D">Descending</option>
+                </select>
+                <select onChange={statusHandler}>
+                    <option value="All">All status</option>
+                    <option value="Alive">Alive</option>
+                    <option value="Dead">Dead</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+                <select onChange={genderHandler}>
+                    <option value="All">All genders</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Genderless">Genderless</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+                <button>Reset filters</button>
                 </div>
-            }
-            
-            {filteredFavs.length > 0 &&
-                <div className={styles.favorites}>
-                    <div className={styles.filters}>
-                        <select onChange={orderHandler}>
-                            <option value="N">No order</option>
-                            <option value="A">Ascending</option>
-                            <option value="D">Descending</option>
-                        </select>
-                        <select onChange={filterHandler}>
-                            <option value="All">All characters</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Genderless">Genderless</option>
-                            <option value="unknown">Unknown</option>
-                        </select>
-                        <button>Reset filters</button>
-                    </div>
+                {filteredFavs.length === 0 &&
+                    <div className={styles.helper}>
+                    <span>NO FAVORITES YET!</span>
+                    <span className={styles.icon}></span>
+                    {/* <span className={`material-symbols-outlined ${styles.arrow}`}>switch_access_shortcut</span> */}
+                </div>}
+                {filteredFavs.length > 0 &&
                     <div className={styles.cards}>
-                        <Cards characters={filteredFavs} />
-                        {/* {(filteredFavs).map(character=> <Card character={character} key={character.id}/>)} */}
-                    </div>
-                </div>
-            }
+                    <Cards characters={filteredFavs} />
+                    {/* {(filteredFavs).map(character=> <Card character={character} key={character.id}/>)} */}
+                </div>}
+            </div>
         </>
     )
 }
