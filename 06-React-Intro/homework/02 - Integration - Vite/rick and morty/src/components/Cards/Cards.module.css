@@ -1,9 +1,14 @@
-.cards {
+/* .cards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: start;
     margin-left: 20px;
+} */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
 }
 
 .helper {

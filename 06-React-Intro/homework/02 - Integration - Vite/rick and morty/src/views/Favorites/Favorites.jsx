@@ -2,7 +2,7 @@ import styles from './Favorites.module.css';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {filterCards, orderCards} from '../../redux/actions/actions.js';
-import Card from '../../components/Card/Card.jsx';
+import Cards from '../../components/Cards/Cards.jsx';
 
 export default function Favorites() {
     const [orderFilter, setOrderFilter] = useState('N'); // local state -> order filter
@@ -50,7 +50,8 @@ export default function Favorites() {
                         <button>Reset filters</button>
                     </div>
                     <div className={styles.cards}>
-                        {(filteredFavs).map(character=> <Card character={character} key={character.id}/>)}
+                        <Cards characters={filteredFavs} />
+                        {/* {(filteredFavs).map(character=> <Card character={character} key={character.id}/>)} */}
                     </div>
                 </div>
             }

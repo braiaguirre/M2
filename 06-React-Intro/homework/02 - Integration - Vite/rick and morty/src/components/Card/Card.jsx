@@ -12,7 +12,7 @@ export default function Card({character, onClose}) {
    const navigate = useNavigate();
 
    // NAVIGATE
-   const navigateHandler = () => navigate(`/detail/${id}`);
+   const navigateHandler = () => navigate(`/detail/${character.id}`);
 
    // SET FAVORITES
    const favoriteHandler = () => {
